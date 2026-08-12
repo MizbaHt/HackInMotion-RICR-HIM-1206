@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 42 33% 96%;
+  --foreground: 205 42% 17%;
+  --border: 194 22% 84%;
+  --input: 194 22% 84%;
+  --ring: 173 48% 38%;
+  --card: 40 50% 99%;
+  --card-foreground: 205 42% 17%;
+  --primary: 174 47% 32%;
+  --primary-foreground: 42 33% 97%;
+  --secondary: 192 34% 91%;
+  --secondary-foreground: 205 42% 21%;
+  --muted: 40 29% 92%;
+  --muted-foreground: 201 17% 44%;
+  --accent: 35 85% 57%;
+  --accent-foreground: 205 42% 17%;
+  --destructive: 5 69% 50%;
+  --destructive-foreground: 42 33% 97%;
+  --sidebar: 205 44% 18%;
+  --sidebar-foreground: 42 33% 95%;
+  --app-font-sans: 'Manrope', sans-serif;
+  --app-font-mono: 'DM Mono', monospace;
+  --radius: 0.75rem;
+  --shadow-soft: 0 18px 60px -30px hsl(205 42% 17% / .32);
+  --shadow-card: 0 8px 28px -18px hsl(205 42% 17% / .26);
+}
+
+.dark {
+  --background: 205 44% 12%;
+  --foreground: 42 33% 95%;
+  --border: 205 28% 26%;
+  --input: 205 28% 26%;
+  --card: 205 38% 17%;
+  --card-foreground: 42 33% 95%;
+  --muted: 205 30% 22%;
+  --muted-foreground: 194 18% 70%;
+  --secondary: 205 30% 24%;
+  --secondary-foreground: 42 33% 95%;
+  --primary: 173 48% 43%;
+  --primary-foreground: 205 44% 12%;
+  --accent: 35 85% 57%;
+  --accent-foreground: 205 44% 12%;
+  --destructive: 5 69% 56%;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--app-font-sans);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+::selection { background: hsl(var(--accent) / .4); }
+
+.display { font-family: 'Space Grotesk', sans-serif; }
+.mono { font-family: var(--app-font-mono); }
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  z-index: 50;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+.animate-in { animation: rise .55s cubic-bezier(.2,.75,.25,1) both; }
+.delay-1 { animation-delay: .08s; }
+.delay-2 { animation-delay: .16s; }
+.delay-3 { animation-delay: .24s; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%,100% { opacity: .38; } 50% { opacity: 1; } }
+.pulse-dot { animation: pulse-dot 2.2s ease-in-out infinite; }
+
+.civic-shell { min-height: 100dvh; background: hsl(var(--background)); }
+.topo-grid {
+  background-color: hsl(193 30% 91%);
+  background-image: linear-gradient(hsl(194 26% 82% / .4) 1px, transparent 1px), linear-gradient(90deg, hsl(194 26% 82% / .4) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.map-surface {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(193 29% 91%);
+  background-image: linear-gradient(32deg, transparent 48%, hsl(174 47% 32% / .11) 49%, hsl(174 47% 32% / .11) 51%, transparent 52%), linear-gradient(120deg, transparent 46%, hsl(35 85% 57% / .16) 47%, hsl(35 85% 57% / .16) 49%, transparent 50%), repeating-linear-gradient(12deg, transparent 0 38px, hsl(194 26% 76% / .35) 39px 40px);
+}
+.map-surface::before { content: ''; position: absolute; inset: 8% 18%; border: 22px solid hsl(42 33% 96% / .48); border-radius: 46% 54% 60% 40%; transform: rotate(-19deg); box-shadow: 0 0 0 2px hsl(174 47% 32% / .08); }
+.map-surface::after { content: ''; position: absolute; width: 45%; height: 150%; left: 44%; top: -25%; border-left: 17px solid hsl(42 33% 96% / .54); border-right: 2px solid hsl(174 47% 32% / .16); transform: rotate(32deg); }
+.map-pin { position: absolute; z-index: 2; width: 15px; height: 15px; border: 3px solid hsl(42 33% 97%); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 3px 10px hsl(205 42% 17% / .27); }
+.map-pin::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: hsl(42 33% 97%); top: 3px; left: 3px; }
+.map-pin.teal { background: hsl(var(--primary)); }
+.map-pin.amber { background: hsl(var(--accent)); }
+.map-pin.red { background: hsl(var(--destructive)); }
+
+.glass { background: hsl(40 50% 99% / .78); backdrop-filter: blur(14px); border: 1px solid hsl(194 22% 84% / .8); }
+.card-lift { box-shadow: var(--shadow-card); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.card-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); border-color: hsl(var(--primary) / .38); }
+.press:active { transform: translateY(1px) scale(.99); }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+
+@media (max-width: 767px) {
+  .mobile-bottom-pad { padding-bottom: 86px; }
+  .display-xl { font-size: 2.65rem; line-height: .98; }
+}
