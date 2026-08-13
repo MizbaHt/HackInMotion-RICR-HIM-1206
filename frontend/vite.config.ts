@@ -53,8 +53,7 @@ export default defineConfig({
       '@assets': path.resolve(
         import.meta.dirname,
         '..',
-        '..',
-        'attached_assets',
+        'assets',
       ),
     },
     dedupe: ['react', 'react-dom'],

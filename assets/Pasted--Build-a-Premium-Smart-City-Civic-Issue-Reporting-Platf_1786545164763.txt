@@ -1,0 +1,1744 @@
+# Build a Premium Smart City Civic Issue Reporting Platform — FRONTEND ONLY
+
+Build a complete, polished, production-quality **frontend-only React.js web application** called **CivicFix**.
+
+### Tagline
+
+**"Report it. Track it. Fix it."**
+
+IMPORTANT:
+This is **FRONTEND ONLY for now**.
+
+Do NOT build a backend, database, authentication server, API server, or real image storage.
+
+Use **realistic dummy/mock data** and local React state/localStorage wherever needed to make the UI feel fully functional.
+
+The code must be structured cleanly so a real FastAPI/Django backend and PostgreSQL database can be connected later without rebuilding the frontend.
+
+---
+
+# 1. TECHNOLOGY
+
+Use:
+
+* React.js
+* Vite
+* Tailwind CSS
+* React Router
+* Framer Motion
+* React Leaflet
+* OpenStreetMap
+* Recharts
+* Lucide React icons
+
+Use modern React functional components and hooks.
+
+Avoid unnecessary libraries.
+
+---
+
+# 2. DESIGN GOAL
+
+The application should NOT look like a college CRUD project.
+
+It should look like a polished modern civic-tech startup product.
+
+Design style:
+
+* Premium
+* Clean
+* Modern
+* Professional
+* Trustworthy
+* Slightly futuristic
+* Data-rich
+* Responsive
+* Excellent spacing
+* Rounded cards
+* Subtle shadows
+* Smooth animations
+* Strong typography
+* Clear status colors
+
+Do NOT overuse gradients.
+
+Do NOT make every component colorful.
+
+Use colors primarily for:
+
+* Status
+* Priority
+* Warnings
+* Success
+* Important actions
+
+Suggested visual identity:
+
+Primary:
+Indigo / deep blue
+
+Background:
+Off-white / very light gray
+
+Success:
+Green
+
+Warning:
+Amber
+
+Danger:
+Red
+
+Accent:
+Cyan/blue
+
+---
+
+# 3. BRANDING
+
+Application name:
+
+## CivicFix
+
+Tagline:
+
+### Report it. Track it. Fix it.
+
+Create a simple logo using a location pin + check mark/city concept.
+
+Use the CivicFix branding consistently throughout the application.
+
+---
+
+# 4. IMPORTANT FRONTEND-ONLY RULE
+
+There is NO real authentication yet.
+
+Create a **mock authentication system**.
+
+Login screen allows:
+
+```text
+Citizen
+Administrator
+```
+
+When user selects Citizen:
+
+→ open Citizen Dashboard
+
+When user selects Administrator:
+
+→ open Admin Dashboard
+
+Store the selected mock role in localStorage.
+
+Create a logout function.
+
+Later this can easily be replaced with JWT authentication.
+
+---
+
+# 5. APPLICATION STRUCTURE
+
+Create clean folders such as:
+
+```text
+src/
+  components/
+  pages/
+    citizen/
+    admin/
+    auth/
+  layouts/
+  data/
+  hooks/
+  utils/
+  routes/
+  assets/
+```
+
+Create reusable components.
+
+Example:
+
+```text
+Navbar
+Sidebar
+MobileBottomNav
+IssueCard
+IssueGrid
+IssueMap
+IssueStatus
+StatusTimeline
+VoteButton
+PriorityBadge
+DepartmentBadge
+CategoryBadge
+ImageUploader
+LocationPicker
+DuplicateWarning
+AnalyticsCard
+ChartCard
+NotificationBell
+SearchBar
+FilterPanel
+Modal
+Drawer
+Toast
+EmptyState
+LoadingSkeleton
+```
+
+---
+
+# 6. ROUTES
+
+Create these frontend routes.
+
+## Public/Auth
+
+```text
+/
+ /login
+ /register
+```
+
+## Citizen
+
+```text
+/citizen
+/citizen/explore
+/citizen/map
+/citizen/report
+/citizen/issues/:id
+/citizen/my-reports
+/citizen/notifications
+/citizen/profile
+```
+
+## Admin
+
+```text
+/admin
+/admin/issues
+/admin/issues/:id
+/admin/map
+/admin/analytics
+/admin/hotspots
+/admin/sla
+/admin/notifications
+/admin/profile
+```
+
+Use route protection based on the mock role stored in localStorage.
+
+---
+
+# 7. LANDING PAGE
+
+Create a visually impressive landing page.
+
+Navbar:
+
+```text
+CivicFix
+
+Home
+Explore Issues
+How It Works
+About
+
+Login
+[Report an Issue]
+```
+
+Hero:
+
+### Make Your City Better.
+
+Subtitle:
+
+> See a problem? Report it, track its progress, and help your community prioritize what matters most.
+
+Buttons:
+
+```text
+[Report an Issue]
+[Explore City Issues]
+```
+
+Add an attractive city/map visual on the right.
+
+Use subtle animated elements.
+
+---
+
+# 8. LANDING PAGE SECTIONS
+
+Add:
+
+## How It Works
+
+Four steps:
+
+```text
+01 Report
+Pin the exact location and upload evidence.
+
+02 Route
+Your issue is automatically sent to the right department.
+
+03 Resolve
+City administrators work on the issue.
+
+04 Verify
+Citizens verify that the problem has actually been fixed.
+```
+
+## Community Impact
+
+Show realistic dummy statistics:
+
+```text
+12,480
+Issues Reported
+
+8,920
+Issues Resolved
+
+24,650
+Community Votes
+
+91%
+Resolution Rate
+```
+
+## Categories
+
+Cards:
+
+```text
+🛣 Roads
+🗑 Sanitation
+💡 Electricity
+💧 Water
+🚧 Drainage
+🏛 Public Property
+🌳 Parks
+```
+
+## Final CTA
+
+> Your city starts with your report.
+
+[Report an Issue]
+
+---
+
+# 9. MOCK DATA
+
+Create a dedicated mock data system.
+
+Example:
+
+```text
+mockIssues.js
+mockUsers.js
+mockDepartments.js
+mockNotifications.js
+mockAnalytics.js
+```
+
+Create at least **30 realistic complaints**.
+
+Each issue should contain:
+
+```javascript
+{
+  id,
+  title,
+  description,
+  category,
+  department,
+  status,
+  priority,
+  priorityScore,
+  latitude,
+  longitude,
+  address,
+  image,
+  reportedBy,
+  reportedAt,
+  votes,
+  duplicateCount,
+  slaHours,
+  slaRemaining,
+  resolutionNote,
+  resolutionImage
+}
+```
+
+Use realistic Indian city locations and civic complaints.
+
+Example:
+
+```text
+Large pothole near railway station
+Garbage overflow near central market
+Broken streetlight near school
+Water leakage near residential colony
+Blocked drainage after rainfall
+Damaged park bench
+Illegal dumping near empty plot
+```
+
+Use realistic dummy images from safe public image URLs/placeholders.
+
+---
+
+# 10. CITIZEN DASHBOARD
+
+Create a beautiful citizen dashboard.
+
+Top greeting:
+
+> Good afternoon 👋
+
+> Help make your neighborhood better.
+
+Large CTA:
+
+### + Report an Issue
+
+Stats:
+
+```text
+My Reports
+12
+
+In Progress
+4
+
+Resolved
+6
+
+Community Votes
+38
+```
+
+Then:
+
+### Recent Reports
+
+Show issue cards.
+
+Then:
+
+### Issues Near You
+
+Show nearby issue cards.
+
+Then:
+
+### Community Priorities
+
+Show most-voted issues.
+
+---
+
+# 11. CITIZEN ISSUE CARD
+
+Design premium issue cards.
+
+Example:
+
+```text
+┌─────────────────────────────────┐
+│ [IMAGE]                         │
+│                                 │
+│ 🛣 Roads     🔴 HIGH            │
+│                                 │
+│ Large Pothole Near Main Road    │
+│                                 │
+│ 📍 320m away                    │
+│ 🏢 Roads Department             │
+│                                 │
+│ 🟡 In Progress                  │
+│                                 │
+│ 👍 128 citizens affected        │
+│                                 │
+│ [▲ Support Issue]               │
+│                                 │
+│ View Details →                  │
+└─────────────────────────────────┘
+```
+
+Hover animation:
+
+* Slight lift
+* Shadow increase
+* Image zoom slightly
+
+---
+
+# 12. EXPLORE ISSUES PAGE
+
+Create:
+
+## Explore City Issues
+
+Top search:
+
+```text
+Search complaints...
+```
+
+Filters:
+
+```text
+Category
+Status
+Department
+Priority
+Distance
+Date
+```
+
+Sorting:
+
+```text
+Most Upvoted
+Highest Priority
+Nearest
+Newest
+```
+
+Display issues in a responsive grid.
+
+Include:
+
+```text
+List View
+Map View
+```
+
+toggle.
+
+---
+
+# 13. COMMUNITY VOTING
+
+Voting must feel important.
+
+Instead of simply:
+
+"Like"
+
+Use:
+
+### 👍 Support this issue
+
+Text:
+
+> 128 citizens are affected by this problem.
+
+Create animated vote button.
+
+When clicked:
+
+```text
+128
+↓
+129
+```
+
+Button changes to:
+
+```text
+✓ Supported
+```
+
+Store the vote state in localStorage so it survives refresh.
+
+Prevent the same mock user from voting twice.
+
+---
+
+# 14. REPORT ISSUE PAGE
+
+Create a premium multi-step form.
+
+Progress indicator:
+
+```text
+1 Category → 2 Location → 3 Details → 4 Review
+```
+
+---
+
+## STEP 1 — Category
+
+Large selectable cards:
+
+```text
+Roads
+Sanitation
+Electricity
+Water
+Drainage
+Public Property
+Parks
+Other
+```
+
+Cards should animate when selected.
+
+---
+
+# 15. STEP 2 — LOCATION
+
+Use:
+
+### React Leaflet + OpenStreetMap
+
+Show an interactive map.
+
+Features:
+
+* Click map to place marker
+* Drag marker
+* Search location UI
+* "Use My Location" button
+* Latitude
+* Longitude
+* Address display
+
+For frontend-only mode, use dummy coordinates and mock geolocation behavior.
+
+Show:
+
+```text
+Selected Location
+
+📍 Main Road, Bhopal
+23.2599, 77.4126
+```
+
+---
+
+# 16. STEP 3 — DETAILS
+
+Fields:
+
+```text
+Issue Title
+Description
+Upload Photo
+Additional Photos
+```
+
+Image upload should work in the frontend.
+
+Show:
+
+* Preview
+* Remove button
+* Upload progress animation
+* File validation
+
+No real upload is required.
+
+Use local object URLs.
+
+---
+
+# 17. DUPLICATE DETECTION UI
+
+Since there is no backend yet, simulate duplicate detection using mock data.
+
+After selecting category/location, search the mock issue list.
+
+If a nearby similar issue exists, show:
+
+```text
+⚠️ Possible duplicate found
+
+We found a similar issue nearby.
+
+Large Pothole Near Main Road
+
+📍 120m away
+👍 86 supporters
+🟡 In Progress
+
+[View Existing Issue]
+
+[Continue Reporting]
+```
+
+Make this UI visually impressive.
+
+The duplicate detection logic should still be implemented as a frontend utility function so it can later be replaced by a backend API.
+
+Example:
+
+```text
+findPotentialDuplicates(issue, mockIssues)
+```
+
+---
+
+# 18. STEP 4 — REVIEW
+
+Show complete summary:
+
+```text
+Category
+Location
+Photo
+Title
+Description
+Department
+Potential duplicate
+```
+
+Automatically show:
+
+```text
+Department:
+Roads
+
+Priority:
+High
+```
+
+Then:
+
+### Submit Report
+
+On submit:
+
+* Create a new issue in frontend state
+* Add it to mock issues
+* Show success modal
+* Generate mock issue ID such as CF-1042
+* Navigate to issue details
+
+---
+
+# 19. SUCCESS SCREEN
+
+Create an excellent success state.
+
+Animation:
+
+✓
+
+Text:
+
+### Issue Reported Successfully
+
+> Your report has been sent to the Roads Department.
+
+Show:
+
+```text
+Issue ID
+CF-1042
+
+Status
+Reported
+
+Department
+Roads
+
+Priority
+High
+```
+
+Buttons:
+
+```text
+[Track Issue]
+[Explore More Issues]
+```
+
+---
+
+# 20. MY REPORTS
+
+Create:
+
+## My Reports
+
+Tabs:
+
+```text
+All
+Reported
+In Progress
+Resolved
+Closed
+```
+
+Each issue has a status timeline.
+
+Timeline:
+
+```text
+✓ Reported
+   Aug 12, 10:30 AM
+
+✓ Acknowledged
+   Aug 12, 11:20 AM
+
+● In Progress
+   Aug 12, 2:40 PM
+
+○ Resolved
+
+○ Closed
+```
+
+---
+
+# 21. ISSUE DETAILS PAGE
+
+Create a rich issue details page.
+
+Header:
+
+```text
+CF-1028
+Large Pothole Near Main Road
+
+🛣 Roads
+🔴 High Priority
+🟡 In Progress
+```
+
+Large image gallery.
+
+Description.
+
+Map location.
+
+Department.
+
+Community votes.
+
+Duplicate information.
+
+Status timeline.
+
+---
+
+# 22. CITIZEN RESOLUTION VERIFICATION
+
+For resolved issues show:
+
+```text
+Issue Resolved
+
+Resolution Photo
+[IMAGE]
+
+Admin Note:
+Road surface repaired and pothole filled.
+
+Was this issue actually fixed?
+
+[✓ Yes, Close Issue]
+
+[✕ No, Reopen Issue]
+```
+
+Since this is frontend-only, update the local mock state.
+
+---
+
+# 23. CITY MAP PAGE
+
+Create a full-screen interactive map.
+
+Display all mock issues.
+
+Marker colors:
+
+```text
+Red = Reported
+Orange = Acknowledged
+Yellow = In Progress
+Green = Resolved
+Blue = Closed
+```
+
+Click marker → issue popup.
+
+Popup:
+
+```text
+Large Pothole
+Roads
+🟡 In Progress
+👍 128 votes
+
+[View Details]
+```
+
+Add:
+
+```text
+Category Filter
+Status Filter
+Priority Filter
+```
+
+Use marker clustering if practical.
+
+---
+
+# 24. ADMIN DASHBOARD
+
+This must look completely different from the citizen UI.
+
+Create a professional city command center.
+
+Desktop sidebar:
+
+```text
+CivicFix
+
+Overview
+Issues
+City Map
+Analytics
+Hotspots
+SLA Monitoring
+Notifications
+Profile
+```
+
+Topbar:
+
+```text
+Search
+Notifications
+Admin: Rahul Sharma
+Roads Department
+```
+
+---
+
+# 25. ADMIN DASHBOARD CARDS
+
+Show:
+
+```text
+Total Issues
+1,248
+
+Pending
+312
+
+In Progress
+521
+
+Resolved
+821
+
+High Priority
+74
+
+SLA Breached
+18
+```
+
+Use animated counters.
+
+Clicking a card should navigate/filter the issue table.
+
+---
+
+# 26. ADMIN DEPARTMENT FILTER
+
+Mock current admin:
+
+```text
+Roads Department Admin
+```
+
+By default, show Roads issues.
+
+Add a dropdown for demo purposes:
+
+```text
+Roads
+Sanitation
+Electricity
+Water
+Drainage
+Super Admin
+```
+
+Changing department should filter the dummy issue data.
+
+This simulates how different admins would see different queues.
+
+---
+
+# 27. ADMIN ISSUE TABLE
+
+Create a polished data table.
+
+Columns:
+
+```text
+ID
+Issue
+Category
+Location
+Votes
+Priority
+Status
+SLA
+Reported
+Actions
+```
+
+Use:
+
+* Search
+* Sort
+* Filter
+* Pagination
+* Status filter
+* Priority filter
+* Department filter
+
+Click row → issue detail drawer.
+
+---
+
+# 28. ADMIN ISSUE DETAIL DRAWER
+
+When admin clicks an issue:
+
+Open a large side drawer.
+
+Show:
+
+```text
+CF-1028
+
+Large Pothole Near Main Road
+
+[PHOTO]
+
+Category: Roads
+Location: Main Road
+Votes: 128
+Priority: HIGH
+SLA: 18h 42m remaining
+```
+
+Status controls:
+
+```text
+Reported
+Acknowledged
+Assigned
+In Progress
+Resolved
+Closed
+```
+
+Admin can click buttons to simulate status changes.
+
+---
+
+# 29. ADMIN RESOLUTION UI
+
+When marking resolved:
+
+Open modal:
+
+```text
+Resolve Issue
+
+Resolution Notes
+[________________________]
+
+Upload Resolution Photo
+[ Upload ]
+
+[Cancel]
+[Mark as Resolved]
+```
+
+Frontend-only behavior:
+
+* Store resolution note
+* Store image preview
+* Change status
+* Add timeline event
+* Show toast
+
+---
+
+# 30. SLA MONITORING PAGE
+
+Create:
+
+## SLA Monitoring
+
+Tabs:
+
+```text
+All
+Approaching SLA
+Breached
+Resolved Within SLA
+```
+
+Issue cards should show:
+
+```text
+CF-1028
+Large Pothole
+
+SLA
+18h 42m remaining
+
+████████░░
+
+Status:
+In Progress
+```
+
+For breached:
+
+```text
+🚨 SLA BREACHED
+
+Exceeded by:
+14h 20m
+```
+
+Use dummy data.
+
+---
+
+# 31. ANALYTICS DASHBOARD
+
+Use Recharts.
+
+Create:
+
+### Issues by Category
+
+Bar chart.
+
+### Issues by Status
+
+Donut chart.
+
+### Issues by Department
+
+Bar chart.
+
+### Monthly Reports
+
+Line chart.
+
+### Resolution Time
+
+Bar chart comparing departments.
+
+### Priority Distribution
+
+Chart.
+
+Use realistic dummy data.
+
+Make charts interactive with tooltips.
+
+---
+
+# 32. DEPARTMENT PERFORMANCE
+
+Create cards:
+
+```text
+Roads
+────────────────
+Resolution Rate
+87%
+
+Avg Resolution
+2.3 days
+
+SLA Compliance
+91%
+
+Community Satisfaction
+4.4/5
+```
+
+Repeat for:
+
+* Sanitation
+* Water
+* Electricity
+* Drainage
+
+---
+
+# 33. HOTSPOTS PAGE
+
+Create:
+
+## City Problem Hotspots
+
+Show map with hotspot circles.
+
+Examples:
+
+```text
+🔴 High
+Railway Road
+
+42 complaints
+Mostly potholes
+```
+
+```text
+🟠 Medium
+Central Market
+
+31 complaints
+Mostly garbage
+```
+
+```text
+🟡 Low
+Residential Area
+
+18 complaints
+Mostly streetlights
+```
+
+Use mock geographical clustering.
+
+---
+
+# 34. NOTIFICATIONS
+
+Create notification dropdown/page.
+
+Citizen notifications:
+
+```text
+✓ Your pothole complaint was acknowledged.
+10 min ago
+
+🔧 Work has started on your complaint.
+2 hours ago
+
+🎉 Your issue has been marked resolved.
+Yesterday
+```
+
+Admin:
+
+```text
+🚨 SLA breach detected
+New high-priority complaint
+12 new complaints assigned
+```
+
+Unread badge.
+
+Mark as read interaction.
+
+---
+
+# 35. PROFILE PAGE
+
+Citizen profile:
+
+```text
+Profile Photo
+Aarav Sharma
+
+Citizen
+
+Reports
+12
+
+Resolved
+8
+
+Community Votes
+42
+
+Member since
+Jan 2026
+```
+
+Admin profile:
+
+```text
+Rahul Sharma
+
+Roads Department Administrator
+
+Issues Managed
+342
+
+Resolved
+289
+
+SLA Compliance
+91%
+```
+
+---
+
+# 36. MOBILE DESIGN
+
+Mobile experience is extremely important.
+
+Citizen bottom navigation:
+
+```text
+Home
+Explore
++ Report
+My Issues
+Profile
+```
+
+Make Report button prominent.
+
+Admin mobile:
+
+* Collapsible sidebar
+* Responsive tables
+* Cards instead of wide tables where appropriate
+* Touch-friendly controls
+
+Map must work on mobile.
+
+Forms must be easy to use with one hand.
+
+---
+
+# 37. ANIMATIONS
+
+Use Framer Motion carefully.
+
+Add:
+
+* Page transitions
+* Card hover
+* Button interactions
+* Modal transitions
+* Sidebar transitions
+* Animated counters
+* Status timeline animation
+* Success animation
+* Toast animation
+* Vote animation
+* Skeleton loaders
+
+Keep animations smooth and professional.
+
+Avoid excessive animations.
+
+---
+
+# 38. TOAST SYSTEM
+
+Create reusable toast notifications.
+
+Examples:
+
+```text
+✓ Issue reported successfully
+✓ Vote added
+✓ Issue reopened
+✓ Status updated
+✓ Resolution confirmed
+⚠ You already supported this issue
+```
+
+---
+
+# 39. EMPTY STATES
+
+Create attractive empty states.
+
+Example:
+
+```text
+📋
+
+No complaints found.
+
+Try changing your filters or report a new civic issue.
+
+[Report an Issue]
+```
+
+---
+
+# 40. ERROR STATES
+
+Create frontend error UI.
+
+Examples:
+
+```text
+⚠ Something went wrong.
+
+We couldn't load the issues.
+
+[Try Again]
+```
+
+Location:
+
+```text
+📍 Location unavailable.
+
+Please select the location manually.
+```
+
+---
+
+# 41. LOADING STATES
+
+Use skeleton loaders instead of blank screens.
+
+Create:
+
+```text
+IssueCardSkeleton
+DashboardSkeleton
+MapSkeleton
+ChartSkeleton
+```
+
+---
+
+# 42. RESPONSIVE BREAKPOINTS
+
+Ensure excellent UI at:
+
+```text
+320px
+375px
+425px
+768px
+1024px
+1280px
+1440px+
+```
+
+Do not simply shrink desktop UI.
+
+Design mobile layouts intentionally.
+
+---
+
+# 43. MOCK DATA REALISM
+
+Use realistic Indian civic data.
+
+Categories:
+
+* Potholes
+* Road damage
+* Garbage overflow
+* Illegal dumping
+* Broken streetlights
+* Water leakage
+* Broken pipelines
+* Drainage blockage
+* Damaged benches
+* Park maintenance
+
+Departments:
+
+* Roads
+* Sanitation
+* Electricity
+* Water
+* Drainage
+* Parks
+* Public Property
+
+Statuses:
+
+* Reported
+* Acknowledged
+* Assigned
+* In Progress
+* Resolved
+* Closed
+* Reopened
+
+---
+
+# 44. FRONTEND DUPLICATE DETECTION
+
+Implement a utility:
+
+```javascript
+findPotentialDuplicates(newIssue, issues)
+```
+
+Use:
+
+* Category matching
+* Geographic distance
+* Recent reports
+* Basic title/description similarity
+
+This is ONLY frontend simulation for now.
+
+Keep the function isolated so it can later become:
+
+```text
+POST /api/issues/check-duplicates
+```
+
+---
+
+# 45. FRONTEND DEPARTMENT ROUTING
+
+Create:
+
+```javascript
+departmentRouting.js
+```
+
+Example:
+
+```javascript
+{
+  pothole: "Roads",
+  road_damage: "Roads",
+  garbage: "Sanitation",
+  streetlight: "Electricity",
+  water_leakage: "Water",
+  drainage: "Drainage"
+}
+```
+
+Use this mapping throughout the frontend.
+
+Do not scatter category logic across components.
+
+---
+
+# 46. LOCAL STORAGE
+
+Use localStorage for frontend-only persistence.
+
+Store:
+
+```text
+mockAuthRole
+currentUser
+supportedIssues
+createdIssues
+notifications
+```
+
+If user refreshes the page:
+
+* Login role remains
+* Votes remain
+* Newly created mock complaints remain
+* Status changes remain
+
+---
+
+# 47. IMPORTANT UI DETAIL
+
+Add small but useful visual information everywhere.
+
+For example:
+
+Instead of:
+
+```text
+128 Votes
+```
+
+Use:
+
+```text
+👍 128 citizens affected
+```
+
+Instead of:
+
+```text
+Pending
+```
+
+Use:
+
+```text
+🟠 Awaiting Department Action
+```
+
+Instead of:
+
+```text
+Resolved
+```
+
+Use:
+
+```text
+✓ Resolution Submitted
+```
+
+This makes the product feel more human and civic-focused.
+
+---
+
+# 48. DEMO LOGIN
+
+On the login page, add convenient demo buttons:
+
+```text
+Continue as Citizen
+
+Continue as Roads Admin
+
+Continue as Super Admin
+```
+
+These should automatically set the appropriate mock role.
+
+Display a small:
+
+**Demo Mode**
+
+badge so it is clear that authentication is currently simulated.
+
+---
+
+# 49. DO NOT BUILD BACKEND YET
+
+STRICTLY DO NOT:
+
+* Create FastAPI
+* Create Django
+* Create Express
+* Create PostgreSQL
+* Create Supabase database
+* Create JWT backend
+* Create real authentication APIs
+* Create backend API endpoints
+
+Everything should work using:
+
+```text
+React
+Mock Data
+Local State
+LocalStorage
+```
+
+---
+
+# 50. FUTURE-BACKEND READY
+
+Even though this is frontend-only, structure the code as if APIs will be connected later.
+
+For example create:
+
+```text
+services/
+    issueService.js
+    authService.js
+    analyticsService.js
+    notificationService.js
+```
+
+For now these services should return mock data.
+
+Example:
+
+```javascript
+issueService.getIssues()
+issueService.getIssueById(id)
+issueService.createIssue(data)
+issueService.voteIssue(id)
+issueService.updateStatus(id, status)
+```
+
+Later these functions can simply be changed to Axios API calls.
+
+Do NOT put all mock data directly inside page components.
+
+---
+
+# 51. FINAL QUALITY REQUIREMENT
+
+The final result must feel like a real product demo.
+
+A judge should be able to:
+
+1. Open the website
+2. Login as Citizen
+3. Report an issue
+4. Select a map location
+5. Upload an image
+6. See duplicate warning
+7. Submit complaint
+8. See automatic department assignment
+9. Explore other complaints
+10. Upvote a complaint
+11. Track their complaint
+12. Logout
+13. Login as Roads Administrator
+14. See the Roads admin dashboard
+15. View the complaint
+16. Change its status
+17. Add resolution evidence
+18. Mark it resolved
+19. View analytics
+20. View hotspots
+21. View SLA monitoring
+
+Everything should work using dummy data.
+
+---
+
+# MOST IMPORTANT DESIGN PRINCIPLE
+
+Do NOT make this look like an ordinary admin template.
+
+The product should visually communicate:
+
+**Citizen participation + government accountability + location intelligence + community priority.**
+
+The three most visually important areas should be:
+
+### 1. Interactive City Map
+
+### 2. Citizen Issue/Community Feed
+
+### 3. Administrator Command Dashboard
+
+Make these areas exceptional.
+
+Build the complete frontend now.
